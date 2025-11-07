@@ -8,7 +8,9 @@
     'category': 'Estadisticas',
     'depends': ['base'],
     'data': [
+        'security/estadisticas_security.xml',
         'security/ir.model.access.csv',
+        'view/menu_estadisticas.xml',
     ],
     'installable': True,
     'application': True,
