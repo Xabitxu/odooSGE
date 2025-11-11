@@ -1,5 +1,4 @@
-from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo import models, fields
 
 class Encuesta(models.Model):
     _name = 'sge.encuesta'
@@ -18,9 +17,3 @@ class Encuesta(models.Model):
     ], string='Puntuación', required=True)
 
     observaciones = fields.Text(string='Observaciones')
-
-    @api.constrains('incidencia_id')
-    def _check_one2one(self):
-        for record in self:
-            if len(record.incidencia_id) > 1:
-                raise ValidationError("Cada encuesta solo puede estar asignada a una única incidencia.")

@@ -11,6 +11,7 @@
         'security/estadisticas_security.xml',
         'security/ir.model.access.csv',
         'view/menu_estadisticas.xml',
+        'view/vistas.xml',
     ],
     'installable': True,
     'application': True,

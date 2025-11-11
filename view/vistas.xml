@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ===================== INCIDENCIAS ===================== -->
+
+    <!-- Vista Lista (Tree) -->
+    <record id="view_sge_incidencia_tree" model="ir.ui.view">
+        <field name="name">sge.incidencia.tree</field>
+        <field name="model">sge.incidencia</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="usuario_id"/>
+                <field name="estado"/>
+                <field name="prioridad"/>
+                <field name="fecha_creacion"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Form -->
+    <record id="view_sge_incidencia_form" model="ir.ui.view">
+        <field name="name">sge.incidencia.form</field>
+        <field name="model">sge.incidencia</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="usuario_id"/>
+                        <field name="estado"/>
+                        <field name="prioridad"/>
+                        <field name="fecha_creacion"/>
+                        <field name="tag_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Kanban -->
+    <record id="view_sge_incidencia_kanban" model="ir.ui.view">
+        <field name="name">sge.incidencia.kanban</field>
+        <field name="model">sge.incidencia</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="usuario_id"/>
+                <field name="estado"/>
+                <field name="prioridad"/>
+                <field name="fecha_creacion"/>
+                <field name="tag_ids" widget="many2many_tags"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong><t t-esc="record.name.value"/></strong>
+                            <div>Estado: <t t-esc="record.estado.value"/></div>
+                            <div>Usuario: <t t-esc="record.usuario_id.value"/></div>
+                            <div>Prioridad: <t t-esc="record.prioridad.value"/></div>
+                            <div>Etiqueta: <t t-esc="record.tag_ids.value"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ===================== COMENTARIOS ===================== -->
+
+    <record id="view_sge_comentario_tree" model="ir.ui.view">
+        <field name="name">sge.comentario.tree</field>
+        <field name="model">sge.comentario</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="incidencia_id"/>
+                <field name="usuario_id"/>
+                <field name="contenido"/>
+                <field name="fecha"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sge_comentario_kanban" model="ir.ui.view">
+        <field name="name">sge.comentario.kanban</field>
+        <field name="model">sge.comentario</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="contenido"/>
+                <field name="usuario_id"/>
+                <field name="fecha"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong><t t-esc="record.usuario_id.value"/></strong>
+                            <div><t t-esc="record.contenido.value"/></div>
+                            <small><t t-esc="record.fecha.value"/></small>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ===================== ENCUESTAS ===================== -->
+
+    <record id="view_sge_encuesta_tree" model="ir.ui.view">
+        <field name="name">sge.encuesta.tree</field>
+        <field name="model">sge.encuesta</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="puntuacion"/>
+                <field name="observaciones"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sge_encuesta_kanban" model="ir.ui.view">
+        <field name="name">sge.encuesta.kanban</field>
+        <field name="model">sge.encuesta</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="puntuacion"/>
+                <field name="observaciones"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong><t t-esc="record.name.value"/></strong>
+                            <div>Puntuación: <t t-esc="record.puntuacion.value"/></div>
+                            <div><t t-esc="record.observaciones.value"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ===================== ESTADÍSTICAS ===================== -->
+
+    <record id="view_sge_estadisticas_tree" model="ir.ui.view">
+        <field name="name">sge.estadisticas.tree</field>
+        <field name="model">sge.estadisticas</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="fecha"/>
+                <field name="total_incidencias"/>
+                <field name="incidencias_finalizadas"/>
+                <field name="tiempo_promedio_resolucion"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sge_estadisticas_form" model="ir.ui.view">
+        <field name="name">sge.estadisticas.form</field>
+        <field name="model">sge.estadisticas</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="fecha"/>
+                        <field name="total_incidencias"/>
+                        <field name="incidencias_finalizadas"/>
+                        <field name="tiempo_promedio_resolucion"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sge_estadisticas_kanban" model="ir.ui.view">
+        <field name="name">sge.estadisticas.kanban</field>
+        <field name="model">sge.estadisticas</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="fecha"/>
+                <field name="total_incidencias"/>
+                <field name="incidencias_finalizadas"/>
+                <field name="tiempo_promedio_resolucion"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong>📅 <t t-esc="record.fecha.value"/></strong>
+                            <div>Total: <t t-esc="record.total_incidencias.value"/></div>
+                            <div>Finalizadas: <t t-esc="record.incidencias_finalizadas.value"/></div>
+                            <div>Promedio: <t t-esc="record.tiempo_promedio_resolucion.value"/> h</div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ===================== ETIQUETAS (TAGS) ===================== -->
+
+    <record id="view_sge_tag_tree" model="ir.ui.view">
+        <field name="name">sge.tag.tree</field>
+        <field name="model">sge.tag</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sge_tag_kanban" model="ir.ui.view">
+        <field name="name">sge.tag.kanban</field>
+        <field name="model">sge.tag</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong><t t-esc="record.name.value"/></strong>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

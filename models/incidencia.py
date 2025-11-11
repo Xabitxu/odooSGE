@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields
 
 class Incidencia(models.Model):
     _name = 'sge.incidencia'
@@ -21,3 +21,6 @@ class Incidencia(models.Model):
 
     # Relación One2one con encuesta
     encuesta_id = fields.Many2one('sge.encuesta', string='Encuesta (1-1)')
+
+    # Many2many: Etiquetas
+    tag_ids = fields.Many2many('sge.tag', string="Etiquetas")
